@@ -1,0 +1,5 @@
+node_modules/
+data/icecream.db
+data/icecream.db-wal
+data/icecream.db-shm
+.DS_Store
