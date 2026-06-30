@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🍦 冰淇淋评鉴所</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- ====== HEADER ====== -->
+  <header class="header">
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-icon">🍦</span>
+        <h1>冰淇淋评鉴所</h1>
+      </div>
+      <p class="subtitle">发现、品尝、分享你最爱的冰淇淋</p>
+    </div>
+  </header>
+
+  <!-- ====== TAB NAVIGATION ====== -->
+  <nav class="tab-nav">
+    <button class="tab-btn active" data-tab="browse">🍨 浏览产品</button>
+    <button class="tab-btn" data-tab="add">➕ 添加产品</button>
+  </nav>
+
+  <!-- ====== MAIN CONTENT ====== -->
+  <main class="main-content">
+    <!-- BROWSE TAB -->
+    <section id="tab-browse" class="tab-panel active">
+      <!-- Brand Filter -->
+      <div class="brand-filter">
+        <button class="brand-chip active" data-brand="">全部</button>
+        <div id="brandChips"></div>
+      </div>
+
+      <!-- Stats Bar -->
+      <div class="stats-bar">
+        <span id="productCount">共 0 款产品</span>
+      </div>
+
+      <!-- Product Grid -->
+      <div id="productGrid" class="product-grid"></div>
+
+      <!-- Empty State -->
+      <div id="emptyState" class="empty-state" style="display:none;">
+        <div class="empty-icon">🍧</div>
+        <p>该品牌下暂无产品</p>
+        <button class="btn btn-primary" onclick="switchTab('add')">去添加第一款</button>
+      </div>
+    </section>
+
+    <!-- ADD PRODUCT TAB -->
+    <section id="tab-add" class="tab-panel">
+      <div class="form-card">
+        <h2 class="form-title">📝 添加新产品</h2>
+        <p class="form-desc">找不到你想评价的冰淇淋？在这里添加它吧！</p>
+        <form id="addProductForm" class="product-form">
+          <div class="form-group">
+            <label for="prodName">产品名称 <span class="required">*</span></label>
+            <input type="text" id="prodName" placeholder="例如：巧乐兹" required>
+          </div>
+          <div class="form-group">
+            <label for="prodBrand">品牌 <span class="required">*</span></label>
+            <div class="brand-input-group">
+              <select id="prodBrandSelect">
+                <option value="">选择已有品牌</option>
+              </select>
+              <span class="or-divider">或</span>
+              <input type="text" id="prodBrandNew" placeholder="输入新品牌名称">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="prodPrice">价格（元）<span class="required">*</span></label>
+            <input type="number" id="prodPrice" placeholder="例如：5" step="0.5" min="0.5" required>
+          </div>
+          <div class="form-group">
+            <label for="prodDesc">产品描述</label>
+            <textarea id="prodDesc" rows="3" placeholder="描述一下这款冰淇淋的特点..."></textarea>
+          </div>
+          <div id="addProductError" class="form-error" style="display:none;"></div>
+          <div id="addProductSuccess" class="form-success" style="display:none;"></div>
+          <button type="submit" class="btn btn-primary btn-full">提交产品</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ====== PRODUCT DETAIL MODAL ====== -->
+  <div id="detailModal" class="modal-overlay" style="display:none;">
+    <div class="modal-container">
+      <button class="modal-close" id="modalClose">&times;</button>
+      <div id="modalContent"></div>
+    </div>
+  </div>
+
+  <!-- ====== TOAST ====== -->
+  <div id="toast" class="toast" style="display:none;"></div>
+
+  <script src="app.js"></script>
+</body>
+</html>
